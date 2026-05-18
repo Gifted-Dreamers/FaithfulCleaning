@@ -48,17 +48,26 @@
   document.querySelectorAll('.ba-slider').forEach(slider => {
     const afterWrap = slider.querySelector('.ba-after-wrap');
     const handle = slider.querySelector('.ba-handle');
-    if (!afterWrap || !handle) return;
+    const afterImg = afterWrap && afterWrap.querySelector('img');
+    if (!afterWrap || !handle || !afterImg) return;
 
     let dragging = false;
 
+    // Pin the after image to the slider's full pixel width so the wrap
+    // acts purely as a clipping mask. Re-pin on resize.
+    const syncSize = () => { afterImg.style.width = slider.clientWidth + 'px'; };
+    syncSize();
+    if (afterImg.complete) syncSize();
+    else afterImg.addEventListener('load', syncSize, { once: true });
+    window.addEventListener('resize', syncSize, { passive: true });
+
     const setPosition = (clientX) => {
       const rect = slider.getBoundingClientRect();
+      // pct = handle position (0 = far left, 100 = far right).
+      // After image is revealed to the RIGHT of the handle.
       const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
-      afterWrap.style.width = pct + '%';
       handle.style.left = pct + '%';
-      const afterImg = afterWrap.querySelector('img');
-      if (afterImg) afterImg.style.left = `-${pct}%`;
+      afterWrap.style.width = (100 - pct) + '%';
     };
 
     const onStart = (e) => {

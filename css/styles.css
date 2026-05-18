@@ -192,9 +192,20 @@ section { padding: clamp(64px, 9vw, 110px) 0; position: relative; }
   position: relative; aspect-ratio: 4 / 5; overflow: hidden; cursor: ew-resize; user-select: none;
   background: var(--sage-100);
 }
-.ba-slider img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-.ba-slider .ba-after-wrap { position: absolute; inset: 0; overflow: hidden; width: 50%; will-change: width; }
-.ba-slider .ba-after-wrap img { width: 200%; left: 0; }
+.ba-slider > picture > img,
+.ba-slider .ba-after-wrap > picture > img {
+  position: absolute; top: 0; height: 100%; object-fit: cover; pointer-events: none;
+}
+.ba-slider > picture > img { left: 0; width: 100%; }
+/* Wrap is anchored to the RIGHT edge so the AFTER image is revealed
+   as the handle slides right. JS sets wrap width and right-anchors
+   the inner image to match the slider's full width. */
+.ba-slider .ba-after-wrap {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 50%;
+  overflow: hidden; will-change: width;
+}
+.ba-slider .ba-after-wrap > picture { display: block; position: absolute; inset: 0; }
+.ba-slider .ba-after-wrap > picture > img { right: 0; }
 .ba-slider .ba-handle {
   position: absolute; top: 0; bottom: 0; left: 50%; width: 3px;
   background: var(--cream); transform: translateX(-50%); will-change: left;
