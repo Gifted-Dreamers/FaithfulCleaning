@@ -63,11 +63,10 @@
 
     const setPosition = (clientX) => {
       const rect = slider.getBoundingClientRect();
-      // pct = handle position (0 = far left, 100 = far right).
-      // After image is revealed to the RIGHT of the handle.
+      // pct = handle position (0 = all before, 100 = all after).
       const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
       handle.style.left = pct + '%';
-      afterWrap.style.width = (100 - pct) + '%';
+      afterWrap.style.width = pct + '%';
     };
 
     const onStart = (e) => {

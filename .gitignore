@@ -10,3 +10,6 @@ node_modules/
 # Raw photo sources — only optimized/ is served
 assets/img/originals/
 assets/img/stock/
+
+# Wrangler local state
+.wrangler/
