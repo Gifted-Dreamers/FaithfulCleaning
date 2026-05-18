@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+*.log
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+
+# Raw photo sources — only optimized/ is served
+assets/img/originals/
+assets/img/stock/
