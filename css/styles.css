@@ -190,7 +190,7 @@ section { padding: clamp(64px, 9vw, 110px) 0; position: relative; }
 .ba-card { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: white; }
 .ba-slider {
   position: relative; aspect-ratio: 4 / 5; overflow: hidden; cursor: ew-resize; user-select: none;
-  background: var(--sage-100);
+  background: var(--sage-100); touch-action: none;
 }
 .ba-slider > picture > img,
 .ba-slider .ba-after-wrap > picture > img {
@@ -338,14 +338,17 @@ section { padding: clamp(64px, 9vw, 110px) 0; position: relative; }
   .nav-toggle { display: inline-flex; }
   .nav-links {
     position: fixed; inset: 64px 0 0; padding: 32px 24px;
-    background: var(--bone); flex-direction: column; align-items: stretch; gap: 6px;
+    background: var(--cream); flex-direction: column; align-items: stretch; gap: 6px;
     transform: translateX(100%); transition: transform .3s ease;
     border-top: 1px solid var(--sage-200);
   }
   .nav-links.is-open { transform: translateX(0); }
-  .nav-links a { padding: 14px 8px; border-bottom: 1px solid var(--sage-100); font-size: 1.1rem; }
+  .nav-links a {
+    padding: 16px 8px; border-bottom: 1px solid var(--sage-200);
+    font-size: 1.15rem; font-weight: 600; color: var(--teal-900);
+  }
   .nav-links a::after { display: none; }
-  .nav-links .btn { margin-top: 12px; }
+  .nav-links .btn { margin-top: 12px; color: var(--cream); }
 }
 
 /* ── Skip link ─────────────────────────────────────────────── */

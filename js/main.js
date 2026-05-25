@@ -80,6 +80,7 @@
       if (!dragging) return;
       const x = e.touches ? e.touches[0].clientX : e.clientX;
       setPosition(x);
+      if (e.cancelable) e.preventDefault();
     };
     const onEnd = () => {
       dragging = false;
@@ -89,9 +90,10 @@
     slider.addEventListener('mousedown', onStart);
     slider.addEventListener('touchstart', onStart, { passive: false });
     window.addEventListener('mousemove', onMove);
-    window.addEventListener('touchmove', onMove, { passive: true });
+    window.addEventListener('touchmove', onMove, { passive: false });
     window.addEventListener('mouseup', onEnd);
     window.addEventListener('touchend', onEnd);
+    window.addEventListener('touchcancel', onEnd);
 
     // Keyboard accessibility
     slider.setAttribute('tabindex', '0');
