@@ -197,14 +197,18 @@ section { padding: clamp(64px, 9vw, 110px) 0; position: relative; }
   position: absolute; top: 0; height: 100%; object-fit: cover; pointer-events: none;
 }
 .ba-slider > picture > img { left: 0; width: 100%; }
-/* Wrap grows from the left; handle sits on its right edge. JS pins the
-   inner after image to the slider's full width so the clip stays aligned. */
+/* Wrap is anchored to the RIGHT and grows leftward as the handle drags
+   right — so BEFORE stays on the left, AFTER reveals on the right
+   (standard before/after slider convention). JS pins the inner after
+   image to the slider's full width so the clip stays aligned, and
+   right-anchors it so the visible portion matches the slider's right
+   edge. */
 .ba-slider .ba-after-wrap {
-  position: absolute; top: 0; left: 0; bottom: 0; width: 50%;
+  position: absolute; top: 0; right: 0; bottom: 0; width: 50%;
   overflow: hidden; will-change: width;
 }
 .ba-slider .ba-after-wrap > picture { display: block; position: absolute; inset: 0; }
-.ba-slider .ba-after-wrap > picture > img { left: 0; }
+.ba-slider .ba-after-wrap > picture > img { right: 0; left: auto; }
 .ba-slider .ba-handle {
   position: absolute; top: 0; bottom: 0; left: 50%; width: 3px;
   background: var(--cream); transform: translateX(-50%); will-change: left;
