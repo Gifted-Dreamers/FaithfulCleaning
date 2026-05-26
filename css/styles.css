@@ -221,9 +221,11 @@ section { padding: clamp(64px, 9vw, 110px) 0; position: relative; }
   position: absolute; top: 14px; padding: 5px 12px; border-radius: 999px;
   font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
   background: rgba(15, 58, 55, 0.78); color: var(--cream); backdrop-filter: blur(6px);
+  pointer-events: none; transition: opacity .2s ease;
 }
 .ba-slider .ba-label.before { left: 14px; }
 .ba-slider .ba-label.after { right: 14px; background: rgba(176, 138, 74, 0.92); }
+.ba-slider .ba-label.is-hidden { opacity: 0; }
 .ba-caption { padding: 18px 22px; font-family: var(--serif); font-style: italic; color: var(--teal-900); }
 
 /* ── Why / Promise band ────────────────────────────────────── */

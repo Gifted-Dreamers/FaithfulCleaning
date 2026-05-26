@@ -49,6 +49,8 @@
     const afterWrap = slider.querySelector('.ba-after-wrap');
     const handle = slider.querySelector('.ba-handle');
     const afterImg = afterWrap && afterWrap.querySelector('img');
+    const beforeLabel = slider.querySelector('.ba-label.before');
+    const afterLabel = slider.querySelector('.ba-label.after');
     if (!afterWrap || !handle || !afterImg) return;
 
     let dragging = false;
@@ -67,6 +69,11 @@
       const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
       handle.style.left = pct + '%';
       afterWrap.style.width = pct + '%';
+      // Hide the BEFORE label once we're mostly showing AFTER, and vice
+      // versa — so the label that's visible always matches the image
+      // currently under it.
+      if (beforeLabel) beforeLabel.classList.toggle('is-hidden', pct > 75);
+      if (afterLabel)  afterLabel.classList.toggle('is-hidden',  pct < 25);
     };
 
     const onStart = (e) => {
