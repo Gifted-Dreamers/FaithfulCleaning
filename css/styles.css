@@ -88,6 +88,7 @@ p { margin: 0 0 1em; }
   border: 1.5px solid transparent; cursor: pointer; transition: all .25s ease;
   white-space: nowrap;
 }
+.nav-links .btn, .nav-links a.btn { padding: 14px 28px; font-size: 1rem; }
 .btn-primary, a.btn-primary { background: var(--teal-700); color: var(--cream); }
 .btn-primary:hover, .btn-primary:focus, a.btn-primary:hover, a.btn-primary:focus { background: var(--teal-900); color: var(--cream); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 .btn-ghost { background: transparent; color: var(--teal-900); border-color: var(--teal-700); }
